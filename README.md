@@ -12,7 +12,6 @@ Adds a iam profile and sqs queue.
 |------|-------------|:----:|:-----:|:-----:|
 | dead_letter_queue | The dead letter queue to use for undeliverable messages | string | `` | no |
 | delay_seconds | Delay in displaying message | string | `0` | no |
-| environment | How do you want to call your environment, this is helpful if you have more than 1 VPC | string | - | yes |
 | fifo_queue | Configure the queue(s) to be FIFO queue(s). This will append the required extension `.fifo` to the queue name(s). | string | `false` | no |
 | max_message_size | Max size of the message default to 256KB | string | `262144` | no |
 | max_receive_count | Maximum receive count | string | `5` | no |
@@ -39,7 +38,6 @@ Adds a iam profile and sqs queue.
 ```hcl
 module "sqs" {
   source      = "github.com/skyscrapers/terraform-sqs//sqs_with_iam"
-  environment = "staging"
   project     = "example"
   name        = ["sqs_name"]
 }
@@ -56,7 +54,6 @@ resource "aws_iam_role_policy_attachment" "sqs-attach" {
 ```hcl
 module "sqs" {
   source      = "github.com/skyscrapers/terraform-sqs//sqs_with_iam"
-  environment = "staging"
   project     = "example"
   name        = ["sqs_name", "another_sqs_queue_name"]
   fifo_queue  = "true"
