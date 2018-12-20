@@ -22,6 +22,6 @@ resource "aws_sqs_queue" "queue" {
   receive_wait_time_seconds  = "${var.receive_wait_time_seconds}"
   redrive_policy             = "${length(var.dead_letter_queue) > 0 ? data.template_file.redrive_policy.rendered : ""}"
   fifo_queue                 = "${var.fifo_queue}"
-  kms_master_key_id = "alias/aws/sqs"
+  kms_master_key_id = "${var.kms_master_key_id}"
   kms_data_key_reuse_period_seconds = "300"
 }

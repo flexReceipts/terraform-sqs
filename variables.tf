@@ -42,3 +42,8 @@ variable "fifo_queue" {
   description = "Configure the queue(s) to be FIFO queue(s). This will append the required extension `.fifo` to the queue name(s)."
   default     = "false"
 }
+
+variable "kms_master_key_id" {
+ description = "Encryption key used to encrypt the sqs instance at rest."
+ default = "alias/aws/sqs"
+}
