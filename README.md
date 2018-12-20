@@ -17,7 +17,6 @@ Adds a iam profile and sqs queue.
 | max_receive_count | Maximum receive count | string | `5` | no |
 | message_retention_seconds | Seconds of retention of the message default to 4 days | string | `345600` | no |
 | name | List of the SQS queue names. If you provide multiple names, each queue will be setup with the same configuration | list | - | yes |
-| project | The project of this queue(s) | string | - | yes |
 | receive_wait_time_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). The default for this attribute is 0, meaning that the call will return immediately. | string | `20` | no |
 | visibility_timeout_seconds | The timeout in seconds of visibility of the message | string | `30` | no |
 
@@ -38,7 +37,6 @@ Adds a iam profile and sqs queue.
 ```hcl
 module "sqs" {
   source      = "github.com/skyscrapers/terraform-sqs//sqs_with_iam"
-  project     = "example"
   name        = ["sqs_name"]
 }
 
@@ -54,7 +52,6 @@ resource "aws_iam_role_policy_attachment" "sqs-attach" {
 ```hcl
 module "sqs" {
   source      = "github.com/skyscrapers/terraform-sqs//sqs_with_iam"
-  project     = "example"
   name        = ["sqs_name", "another_sqs_queue_name"]
   fifo_queue  = "true"
 }
