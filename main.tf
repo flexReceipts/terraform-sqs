@@ -14,7 +14,7 @@ EOF
 
 resource "aws_sqs_queue" "queue" {
   count                      = "${length(var.name)}"
-  name                       = "${var.project}_${var.name[count.index]}${var.fifo_queue == "true" ? ".fifo" : ""}"
+  name                       = "${var.name[count.index]}${var.fifo_queue == "true" ? ".fifo" : ""}"
   visibility_timeout_seconds = "${var.visibility_timeout_seconds}"
   delay_seconds              = "${var.delay_seconds}"
   max_message_size           = "${var.max_message_size}"                                                                              # 256 KB

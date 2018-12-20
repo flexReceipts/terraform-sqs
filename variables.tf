@@ -1,7 +1,3 @@
-variable "project" {
-  description = "The project of this queue(s)"
-}
-
 variable "name" {
   description = "List of the SQS queue names. If you provide multiple names, each queue will be setup with the same configuration"
   type        = "list"
